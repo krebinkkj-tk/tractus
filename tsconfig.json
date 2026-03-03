@@ -11,10 +11,7 @@
     "declaration": false,
     "sourceMap": true,
     "isolatedModules": true,
-    "baseUrl": ".",
-    "paths": {
-      "@tractus/*": ["packages/*/src"]
-    }
+    "baseUrl": "."
   },
   "include": ["packages/**/*", "apps/**/*"],
   "exclude": ["node_modules", "dist", "packages/**/dist"]
