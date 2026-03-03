@@ -4,16 +4,30 @@ import type { OutboxMessage, OutboxStorageAdapter } from '@tractus/core';
  * Interface mínima esperada do PrismaClient para o modelo TractusOutbox.
  * Isto permite que o adaptador funcione sem importar estritamente o cliente gerado do utilizador.
  */
-export interface MinimalPrismaClient {
+export interface MinimalPrismaClient<TRecord extends PrismaOutboxRecord = PrismaOutboxRecord> {
   tractusOutbox: {
-    create: (args: any) => Promise<any>;
-    findMany: (args: any) => Promise<any>;
-    update: (args: any) => Promise<any>;
+    create: (args: unknown) => Promise<TRecord>;
+    findMany: (args: unknown) => Promise<TRecord[]>;
+    update: (args: unknown) => Promise<TRecord[]>;
   };
 }
 
-export class PrismaOutboxAdapter implements OutboxStorageAdapter {
-  constructor(private readonly prisma: MinimalPrismaClient) {}
+export interface PrismaOutboxRecord {
+  id: string;
+  type: string;
+  topic: string;
+  payload: unknown;
+  status: OutboxMessage['status'];
+  attempts: number;
+  lastError: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export class PrismaOutboxAdapter<TRecord extends PrismaOutboxRecord = PrismaOutboxRecord>
+  implements OutboxStorageAdapter
+{
+  constructor(private readonly prisma: MinimalPrismaClient<TRecord>) {}
 
   async save(
     message: Omit<OutboxMessage, 'id' | 'createdAt' | 'updatedAt' | 'status' | 'attempts'>,
@@ -62,7 +76,7 @@ export class PrismaOutboxAdapter implements OutboxStorageAdapter {
     });
   }
 
-  private mapToOutboxMessage(record: any): OutboxMessage {
+  private mapToOutboxMessage(record: PrismaOutboxRecord): OutboxMessage {
     return {
       id: record.id,
       type: record.type,
