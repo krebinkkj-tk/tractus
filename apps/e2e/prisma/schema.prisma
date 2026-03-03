@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../tests/generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model TractusOutbox {
+  id          String   @id @default(uuid())
+  type        String
+  topic       String
+  payload     Json
+  status      String   @default("PENDING")
+  attempts    Int      @default(0)
+  lastError   String?  @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([status, createdAt])
+}
