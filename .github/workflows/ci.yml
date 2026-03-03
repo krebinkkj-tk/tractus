@@ -63,7 +63,7 @@ jobs:
         run: yarn build
 
       - name: Start Docker Infrastructure
-        run: docker copmpose up -d
+        run: docker compose up -d
 
       - name: Wait for Infrastructure Ready
         run: sleep 15
