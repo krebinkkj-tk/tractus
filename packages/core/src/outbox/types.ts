@@ -12,7 +12,7 @@ export interface OutboxMessage<TPayload = unknown> {
   /** Status atual da mensagem */
   status: OutboxMessageStatus;
   /** Quantidade de tentativas de envio */
-  attemps: number;
+  attempts: number;
   /** Erro da ultima tentativa, se houver */
   lastError?: string;
   createdAt: Date;
@@ -29,4 +29,21 @@ export interface OutboxStorageAdapter {
   fetchPending(limit: number): Promise<OutboxMessage[]>;
   markAsProcessed(id: string): Promise<void>;
   markAsFailed(id: string, error: string): Promise<void>;
+}
+
+/**
+ * Interface que todos os adaptadores de mensageria (Kafka,RabbitMQ, Redis)
+ * devem implementar para publicar mensagens.
+ */
+export interface MessageBrokerAdapter {
+  publish(message: OutboxMessage): Promise<void>;
+}
+
+export interface OutboxProcessorConfig {
+  /** Quantidade máxima de mensagens a processar por ciclo */
+  batchSize?: number;
+  /** Intervalo em milissegundos entre as verificações no banco */
+  pollingInterval?: number;
+  /** Número máximo de tentativas antes de marcar como FAILED */
+  maxRetries?: number;
 }
