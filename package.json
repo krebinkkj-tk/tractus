@@ -16,7 +16,7 @@
     "prepare": "husky",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "tsc --build tsconfig.json --incremental",
+    "typecheck": "prisma generate && tsc --build",
     "build": "yarn workspaces foreach --all --parallel --topological run build"
   },
   "packageManager": "yarn@4.12.0",
