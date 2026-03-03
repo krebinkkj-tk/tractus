@@ -13,7 +13,7 @@
     "isolatedModules": true,
     "baseUrl": ".",
     "paths": {
-      "@tractus/*": ["packages/*/src/index.ts"]
+      "@tractus/*": ["packages/*/src"]
     }
   },
   "include": ["packages/**/*", "apps/**/*"],
