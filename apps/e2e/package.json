@@ -1,0 +1,23 @@
+{
+  "name": "@tractus/e2e",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "db:push": "prisma db push",
+    "db:generate": "prisma generate",
+    "test:e2e": "vitest run"
+  },
+  "dependencies": {
+    "@prisma/client": "^7.4.2",
+    "@tractus/broker-kafka": "workspace:*",
+    "@tractus/core": "workspace:*",
+    "@tractus/outbox-prisma": "workspace:*",
+    "kafkajs": "^2.2.4"
+  },
+  "devDependencies": {
+    "@prisma/adapter-pg": "^7.4.2",
+    "@prisma/config": "^7.4.2",
+    "prisma": "^7.4.2",
+    "vitest": "^1.0.0"
+  }
+}

@@ -1,14 +1,14 @@
-import type { OutboxMessage, OutboxStorageAdapter } from '@tractus/core';
+import type { OutboxMessage, OutboxMessageStatus, OutboxStorageAdapter } from '@tractus/core';
 
 /**
  * Interface mínima esperada do PrismaClient para o modelo TractusOutbox.
  * Isto permite que o adaptador funcione sem importar estritamente o cliente gerado do utilizador.
  */
-export interface MinimalPrismaClient<TRecord extends PrismaOutboxRecord = PrismaOutboxRecord> {
+export interface MinimalPrismaClient {
   tractusOutbox: {
-    create: (args: unknown) => Promise<TRecord>;
-    findMany: (args: unknown) => Promise<TRecord[]>;
-    update: (args: unknown) => Promise<TRecord[]>;
+    create(args: any): Promise<PrismaOutboxRecord>;
+    findMany(args: any): Promise<PrismaOutboxRecord[]>;
+    update(args: any): Promise<PrismaOutboxRecord>;
   };
 }
 
@@ -17,7 +17,7 @@ export interface PrismaOutboxRecord {
   type: string;
   topic: string;
   payload: unknown;
-  status: OutboxMessage['status'];
+  status: string;
   attempts: number;
   lastError: string | null;
   createdAt: Date;
@@ -27,7 +27,7 @@ export interface PrismaOutboxRecord {
 export class PrismaOutboxAdapter<TRecord extends PrismaOutboxRecord = PrismaOutboxRecord>
   implements OutboxStorageAdapter
 {
-  constructor(private readonly prisma: MinimalPrismaClient<TRecord>) {}
+  constructor(private readonly prisma: MinimalPrismaClient) {}
 
   async save(
     message: Omit<OutboxMessage, 'id' | 'createdAt' | 'updatedAt' | 'status' | 'attempts'>,
@@ -35,7 +35,7 @@ export class PrismaOutboxAdapter<TRecord extends PrismaOutboxRecord = PrismaOutb
     const created = await this.prisma.tractusOutbox.create({
       data: {
         type: message.type,
-        topic: message.type,
+        topic: message.topic,
         payload: message.payload ?? {},
         status: 'PENDING',
         attempts: 0,
@@ -82,7 +82,7 @@ export class PrismaOutboxAdapter<TRecord extends PrismaOutboxRecord = PrismaOutb
       type: record.type,
       topic: record.topic,
       payload: record.payload,
-      status: record.status,
+      status: record.status as OutboxMessage['status'],
       attempts: record.attempts,
       lastError: record.lastError ?? undefined,
       createdAt: record.createdAt,
