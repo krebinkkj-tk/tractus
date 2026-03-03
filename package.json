@@ -17,6 +17,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "yarn workspace @tractus/e2e exec prisma generate && tsc --noEmit",
+    "ci": "yarn build && yarn typecheck",
     "build": "yarn workspaces foreach --all --parallel --topological run build"
   },
   "packageManager": "yarn@4.12.0",
