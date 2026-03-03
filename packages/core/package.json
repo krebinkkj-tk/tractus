@@ -1,6 +1,6 @@
 {
   "name": "@tractus/core",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Core abstractions for Tractus: distributed transactions and outbox pattern.",
   "type": "module",
   "main": "./dist/index.cjs",

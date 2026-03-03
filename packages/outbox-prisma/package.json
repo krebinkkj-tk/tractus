@@ -1,6 +1,6 @@
 {
   "name": "@tractus/outbox-prisma",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Prisma storage adapter for Tractus Outbox pattern.",
   "type": "module",
   "main": "./dist/index.cjs",

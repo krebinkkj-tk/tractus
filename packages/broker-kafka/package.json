@@ -1,6 +1,6 @@
 {
   "name": "@tractus/broker-kafka",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Kafka message broker adapter for Tractus Outbox pattern.",
   "type": "module",
   "main": "./dist/index.cjs",
