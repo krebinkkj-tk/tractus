@@ -1205,9 +1205,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@tractus/outbox-prisma@workspace:*, @tractus/outbox-prisma@workspace:packages/outbot-prisma":
+"@tractus/outbox-prisma@workspace:*, @tractus/outbox-prisma@workspace:packages/outbox-prisma":
   version: 0.0.0-use.local
-  resolution: "@tractus/outbox-prisma@workspace:packages/outbot-prisma"
+  resolution: "@tractus/outbox-prisma@workspace:packages/outbox-prisma"
   dependencies:
     "@tractus/core": "workspace:*"
     tsup: "npm:^8.5.1"
