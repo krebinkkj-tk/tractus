@@ -749,6 +749,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tractus/broker-kafka@workspace:packages/broker-kafka":
+  version: 0.0.0-use.local
+  resolution: "@tractus/broker-kafka@workspace:packages/broker-kafka"
+  dependencies:
+    "@tractus/core": "workspace:*"
+    kafkajs: "npm:^2.2.4"
+    tsup: "npm:^8.5.1"
+  peerDependencies:
+    kafkajs: ^2.0.0
+  languageName: unknown
+  linkType: soft
+
 "@tractus/core@workspace:*, @tractus/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@tractus/core@workspace:packages/core"
@@ -1732,6 +1744,13 @@ __metadata:
   version: 1.0.0
   resolution: "json-schema-traverse@npm:1.0.0"
   checksum: 10/02f2f466cdb0362558b2f1fd5e15cce82ef55d60cd7f8fa828cf35ba74330f8d767fcae5c5c2adb7851fa811766c694b9405810879bc4e1ddd78a7c0e03658ad
+  languageName: node
+  linkType: hard
+
+"kafkajs@npm:^2.2.4":
+  version: 2.2.4
+  resolution: "kafkajs@npm:2.2.4"
+  checksum: 10/75eb0d221397085f90e51f8a2d752495c9fa9c1b3a1a6db610cd7074fa8c52777f295832fd0a7c49cded5e574337a09fafa8c3f7cf1caa38f4dc9aa20fcfb7df
   languageName: node
   linkType: hard
 
