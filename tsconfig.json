@@ -16,5 +16,6 @@
       "@tractus/*": ["packages/*/src"]
     }
   },
+  "include": ["packages/**/*", "apps/**/*"],
   "exclude": ["node_modules", "dist", "packages/**/dist"]
 }
