@@ -16,7 +16,7 @@
     "prepare": "husky",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "prisma generate && tsc --build",
+    "typecheck": "yarn workspace @tractus/e2e exec prisma generate && tsc --noEmit",
     "build": "yarn workspaces foreach --all --parallel --topological run build"
   },
   "packageManager": "yarn@4.12.0",

@@ -1,4 +1,4 @@
-import type { OutboxMessage, OutboxMessageStatus, OutboxStorageAdapter } from '@tractus/core';
+import type { OutboxMessage, OutboxStorageAdapter } from '@tractus/core';
 
 /**
  * Interface mínima esperada do PrismaClient para o modelo TractusOutbox.
@@ -24,9 +24,7 @@ export interface PrismaOutboxRecord {
   updatedAt: Date;
 }
 
-export class PrismaOutboxAdapter<TRecord extends PrismaOutboxRecord = PrismaOutboxRecord>
-  implements OutboxStorageAdapter
-{
+export class PrismaOutboxAdapter implements OutboxStorageAdapter {
   constructor(private readonly prisma: MinimalPrismaClient) {}
 
   async save(
