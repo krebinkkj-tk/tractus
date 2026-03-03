@@ -18,11 +18,15 @@
     "test:watch": "vitest",
     "typecheck": "yarn workspace @tractus/e2e exec prisma generate && tsc --noEmit",
     "ci": "yarn build && yarn typecheck",
-    "build": "yarn workspaces foreach --all --parallel --topological run build"
+    "build": "yarn workspaces foreach --all --parallel --topological run build",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "yarn build && changeset publish"
   },
   "packageManager": "yarn@4.12.0",
   "devDependencies": {
     "@biomejs/biome": "2.4.5",
+    "@changesets/cli": "^2.30.0",
     "@commitlint/cli": "^20.4.2",
     "@commitlint/config-conventional": "^20.4.2",
     "@types/node": "^25.3.3",
