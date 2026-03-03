@@ -32,7 +32,7 @@ jobs:
         run: yarn check
 
       - name: Typecheck
-        run: yarn typecheck
+        run: yarn ci
 
       - name: Build Packages
         run: yarn build
