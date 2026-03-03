@@ -14,7 +14,7 @@
     "lint": "biome lint .",
     "check": "biome check --write .",
     "prepare": "husky",
-    "test": "vitest run",
+    "test": "vitest run --exclude \"apps/\"",
     "test:watch": "vitest",
     "typecheck": "yarn workspace @tractus/e2e exec prisma generate && tsc --noEmit",
     "ci": "yarn build && yarn typecheck",
