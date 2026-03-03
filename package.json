@@ -14,8 +14,11 @@
     "lint": "biome lint .",
     "check": "biome check --write .",
     "prepare": "husky",
-    "test": "vitest run",
-    "test:watch": "vitest"
+    "test": "vitest run --exclude \"apps/\"",
+    "test:watch": "vitest",
+    "typecheck": "yarn workspace @tractus/e2e exec prisma generate && tsc --noEmit",
+    "ci": "yarn build && yarn typecheck",
+    "build": "yarn workspaces foreach --all --parallel --topological run build"
   },
   "packageManager": "yarn@4.12.0",
   "devDependencies": {
