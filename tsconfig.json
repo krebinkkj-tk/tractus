@@ -13,9 +13,7 @@
     "isolatedModules": true,
     "baseUrl": ".",
     "paths": {
-      "@tractus/core": ["packages/core/src/index.ts"],
-      "@tractus/broker-kafka": ["packages/broker-kafka/src/index.ts"],
-      "@tractus/outbox-prisma": ["packages/outbox-prisma/src/index.ts"]
+      "@tractus/*": ["packages/*/src/index.ts"]
     }
   },
   "include": ["packages/**/*", "apps/**/*"],
